@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تأكيدات الحضور | محمود &amp; منة الله</title>
+<style>
+  :root{--cream:#F6EFE2;--red:#9E1C20;--red-deep:#7A1417;--gold:#C6A15B;--ink:#6B4F35}
+  *{box-sizing:border-box}
+  body{
+    margin:0;min-height:100vh;font-family:'Segoe UI',Tahoma,sans-serif;
+    background:var(--cream);color:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+    padding:24px;text-align:center;
+  }
+  h1{color:var(--red);font-size:20px;margin:0}
+  .card{
+    background:#fff;padding:28px 40px;border-radius:16px;
+    box-shadow:0 10px 28px rgba(122,20,23,.15);border:1px solid rgba(198,161,91,.5);
+  }
+  .card img{display:block;transform:scale(3.6);image-rendering:pixelated}
+  .hint{font-size:13px;color:var(--gold);max-width:280px;line-height:1.7}
+  button{
+    font-family:inherit;font-size:14px;color:var(--red-deep);background:transparent;
+    border:1.5px solid var(--gold);border-radius:999px;padding:9px 26px;cursor:pointer;
+  }
+  button:active{transform:scale(.96)}
+</style>
+</head>
+<body>
+  <h1>عدد من أكّدوا الحضور</h1>
+  <div class="card"><img id="badge" alt="عدد التأكيدات" width="56" height="20"></div>
+  <button onclick="loadBadge()">تحديث ↻</button>
+  <p class="hint">افتحوا هذه الصفحة في أي وقت لمعرفة عدد الضيوف الذين ضغطوا «أؤكّد الحضور» على الدعوة — يتحدّث الرقم تلقائيًا خلال دقيقتين من أي تأكيد جديد.</p>
+
+<script>
+const NAMESPACE = "mahmoud-mennatalah-katb-08082026-kundalini";
+const COUNTER   = "rsvp";
+const BADGE_BASE = `https://img.shields.io/badge/dynamic/json?url=${encodeURIComponent(
+  `https://api.counterapi.dev/v1/${NAMESPACE}/${COUNTER}/`
+)}&label=RSVP&query=%24.count&color=9E1C20`;
+
+function loadBadge(){
+  document.getElementById("badge").src = BADGE_BASE + "&cb=" + Date.now();
+}
+loadBadge();
+</script>
+</body>
+</html>
